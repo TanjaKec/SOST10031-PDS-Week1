@@ -1,0 +1,93 @@
+---
+title: "SOST10031 Principles of Data Science"
+subtitle: "Week 1 Starter File"
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    embed-resources: true
+
+  pdf:
+    toc: true
+    toc-depth: 2
+    documentclass: article
+    geometry:
+      - margin=1in
+    colorlinks: true
+    linkcolor: blue
+    urlcolor: blue  
+
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Welcome
+
+If you can see this page after rendering, your setup is working. Well done.
+
+This file is deliberately small. It does one thing only: it opens a real dataset we will use throughout the course, and shows you three small pieces of information about it. You do not need to write anything or change anything. Just read the comments, run the file, and see what appears.
+
+Every line of R code below has a comment above it, starting with a hash symbol `#`. R ignores anything on a line after `#`, so comments are notes for you, the reader, not instructions for R.
+
+## Loading the data
+
+```{r}
+# read.csv() opens a file that stores a table of data, such as a spreadsheet
+# saved as a plain text file. It comes built into R, so no extra package
+# is needed for this step.
+#
+# The path "data/gii_2023_teaching.csv" is a relative path: it describes
+# where the file is relative to this project folder, rather than giving
+# its full location on your computer. Because the data folder travels
+# with this project, the same line of code works on any computer, for
+# anyone who opens the project the same way you did.
+gii <- read.csv("data/gii_2023_teaching.csv")
+```
+
+If that chunk ran without a red error message, you have just loaded real data published by the United Nations Development Programme into R, and given it the short name `gii`.
+
+## How many rows does it have?
+
+```{r}
+# nrow() counts the number of rows in a table.
+# Each row in this file represents one country or territory.
+nrow(gii)
+```
+
+## What does it look like?
+
+```{r}
+# head() shows the first few rows of a table, so we can see its shape
+# without printing all 195 rows at once.
+#
+# gii[ , c("country", "lfpr_f_2023", "lfpr_m_2023")] keeps only three
+# columns: the country name, and the labour force participation rates
+# for women and men in 2023. The comma inside the square brackets means
+# "keep every row"; the part after the comma chooses which columns.
+head(gii[ , c("country", "lfpr_f_2023", "lfpr_m_2023")])
+```
+
+## One simple picture
+
+```{r}
+# hist() draws a histogram: a chart that groups values into bins and
+# shows how many countries fall into each bin. This also comes built
+# into R, with no extra package needed.
+#
+# main sets the chart title; xlab labels the horizontal axis.
+hist(
+  gii$lfpr_f_2023,
+  main = "Female labour force participation across countries, 2023",
+  xlab = "Percentage of women aged 15 and older in the labour force"
+)
+```
+
+## What just happened
+
+You opened a project, ran some supplied R code, and produced a table and a chart from a real dataset, without writing a single new line of code yourself. That is exactly right for this stage of the course.
+
+Later files will ask you to make small, guided changes to code like this. For now, if everything above appeared without a red error message, you are ready. If something went wrong, the troubleshooting section of `SOST10031_Week1_Getting_Started.qmd` covers the most common problems.
