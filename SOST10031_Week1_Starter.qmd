@@ -1,5 +1,5 @@
 ---
-title: "SOST10031 Principles of Data Science"
+title: "SOST20131/30031 ASRQ"
 subtitle: "Week 1 Starter File"
 
 format:
